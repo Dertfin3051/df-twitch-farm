@@ -24,7 +24,7 @@ public class Main {
 
         System.out.println("Welcome to DF Twitch Farm!");
         System.out.println("Please check if you have configured the config.json file before starting the farm.");
-        System.out.println("Full installation guide here: \n");
+        System.out.println("Full installation guide here: https://github.com/Dertfin3051/df-twitch-farm/blob/master/README.md\n");
         System.out.println("Press enter to start farm...");
         input.nextLine();
         try {
