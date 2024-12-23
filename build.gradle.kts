@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("application")
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
@@ -12,6 +13,10 @@ repositories {
 
 dependencies {
     implementation("org.json:json:20240303")
+}
+
+application {
+    mainClass = "ru.dfhub.Main"
 }
 
 tasks.build {

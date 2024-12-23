@@ -2,9 +2,7 @@ package ru.dfhub;
 
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -22,7 +20,7 @@ public class Config {
                 configFile.createNewFile();
 
                 PrintWriter pw = new PrintWriter(configFile);
-                pw.write(Files.readString(Path.of(Main.class.getClassLoader().getResource("config.json").getPath())));
+                pw.write(getDefaultConfig());
                 pw.flush();
                 pw.close();
                 System.out.println("Config file generated successfully. Please, configure it");
@@ -54,6 +52,17 @@ public class Config {
         } catch (IOException e) {
             throw new IOException("Can't read config file!");
         }
+    }
+
+    private static String getDefaultConfig() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.json")));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        return new JSONObject(sb.toString()).toString(4);
     }
 
 }
